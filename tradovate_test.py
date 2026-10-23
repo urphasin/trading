@@ -38,7 +38,19 @@ request = urllib.request.Request(
 
 try:
     with urllib.request.urlopen(request, timeout=20) as response:
-        result = json.loads(response.read().decode("utf-8"))
+        raw = response.read().decode("utf-8")
+        result = json.loads(raw)
+
+        print("\nResponse type:", type(result).__name__)
+
+        if isinstance(result, dict):
+            print("Response fields:", list(result.keys()))
+            print("Error message:", result.get("errorText", "Not provided"))
+            print("Error code:", result.get("errorCode", "Not provided"))
+        else:
+            print("Response content:", str(result)[:1000])
+
+      
 
     print("\nResponse received!")
     print("User status:", result.get("userStatus", "Not provided"))
