@@ -18,3 +18,5 @@ int main() {
   cout << endl;
   return 0;
 }
+
+// g++ es.cpp -o ans && ./ans && rm -rf ./ans
